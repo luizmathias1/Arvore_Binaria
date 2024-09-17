@@ -7,26 +7,24 @@ public class ArvoreController {
         this.tree = new ArvoreBinaria();
     }
 
-    public void Insert(int N) {
-        // Chama o método recursivo para inserir o valor na árvore
-        this.tree.setRaiz(InsertTree(this.tree.getRaiz(), N));
+    public void Insert(int dado) {
+        tree.setRaiz(InsertTree(tree.getRaiz(), dado));
     }
 
-    private Node InsertTree(Node atual, int N) {
+    private Node InsertTree(Node atual, int dado) {
 
         if (atual == null) { // cria a raiz se estiver nula
             Node no = new Node();
-            no.setInfo(N);
+            no.setInfo(dado);
             return no;
         }
 
+        if (dado >= atual.getInfo()) { // adiciona o valor
 
-        if (N >= atual.getInfo()) { // adiciona o valor
-
-            atual.setDireita(InsertTree(atual.getDireita(), N));
+            atual.setDireita(InsertTree(atual.getDireita(), dado)); //direita
         }
         else {
-            atual.setEsquerda(InsertTree(atual.getEsquerda(), N));
+            atual.setEsquerda(InsertTree(atual.getEsquerda(), dado)); //esquerda
         }
 
         return atual;
@@ -79,20 +77,20 @@ public class ArvoreController {
         }
     }
 
-    public void RemoveValue(int N) {
-        this.tree.setRaiz(remover(this.tree.getRaiz(), N));
+    public void RemoveValue(int dado) {
+        this.tree.setRaiz(remover(this.tree.getRaiz(), dado));
     }
 
 
-    private Node remover(Node no, int N) {
+    private Node remover(Node no, int dado) {
         if (no == null) {
             return null;
         }
 
-        if (N < no.getInfo()) {
-            no.setEsquerda(remover(no.getEsquerda(), N)); // Remover na subárvore esquerda
-        } else if (N > no.getInfo()) {
-            no.setDireita(remover(no.getDireita(), N)); // Remover na subárvore direita
+        if (dado < no.getInfo()) {
+            no.setEsquerda(remover(no.getEsquerda(), dado)); // Remover na subárvore esquerda
+        } else if (dado > no.getInfo()) {
+            no.setDireita(remover(no.getDireita(), dado)); // Remover na subárvore direita
         } else {
 
 
