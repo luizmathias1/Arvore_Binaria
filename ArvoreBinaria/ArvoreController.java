@@ -13,25 +13,22 @@ public class ArvoreController {
     }
 
     private Node InsertTree(Node atual, int N) {
-        // Se o nó atual for null, insere o novo nó
-        if (atual == null) {
+
+        if (atual == null) { // cria a raiz se estiver nula
             Node no = new Node();
-            no.setInfo(N);  // Define o valor do novo nó
-            return no;      // Retorna o novo nó, ele será o filho (esquerda ou direita) do nó pai
+            no.setInfo(N);
+            return no;
         }
 
-        // Se o número N é maior ou igual ao valor do nó atual, vai para a subárvore direita
-        if (N >= atual.getInfo()) {
-            // Atualiza o nó direito do nó atual (chamada recursiva para inserir na subárvore direita)
+
+        if (N >= atual.getInfo()) { // adiciona o valor
+
             atual.setDireita(InsertTree(atual.getDireita(), N));
         }
-        // Se o número N é menor, vai para a subárvore esquerda
         else {
-            // Atualiza o nó esquerdo do nó atual (chamada recursiva para inserir na subárvore esquerda)
             atual.setEsquerda(InsertTree(atual.getEsquerda(), N));
         }
 
-        // Retorna o nó atual com suas subárvores possivelmente modificadas
         return atual;
     }
 
@@ -41,13 +38,11 @@ public class ArvoreController {
 
     private void percorrerPreOrdem(Node no) {
         if (no != null) {
-            // Visite o nó atual
+
             System.out.print(no.getInfo() + " ");
 
-            // Percorra a subárvore esquerda
             percorrerPreOrdem(no.getEsquerda());
 
-            // Percorra a subárvore direita
             percorrerPreOrdem(no.getDireita());
         }
     }
@@ -117,8 +112,8 @@ public class ArvoreController {
             while (sucessor.getEsquerda() != null) { // encontra o nosso sucessor que será o menos valor
                 sucessor = sucessor.getEsquerda();
             }
-            no.setInfo(sucessor.getInfo()); // Substituir o valor do nó pelo valor do sucessor
-            no.setDireita(remover(no.getDireita(), sucessor.getInfo())); // Remover o sucessor
+            no.setInfo(sucessor.getInfo()); // valor do nó = valor do sucessor
+            no.setDireita(remover(no.getDireita(), sucessor.getInfo())); // remove o sucessor
         }
 
         return no;
