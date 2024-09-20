@@ -67,12 +67,26 @@ public class UserInterface {
 
     private void delete(){
         Scanner teclado = new Scanner(System.in);
-        System.out.println("Digite o valor a ser removido");
+        System.out.println("Selecione sua opção \n [1] - Remover menor valor \n [2] - Remover maior valor \n [3] - Remover valor especifico");
         int dado = teclado.nextInt();
         try{
-            controller.RemoveValue(dado);
+            switch (dado){
+                case 1:
+                    controller.removelowestvalue();
+                    break;
+                case 2:
+                    controller.removebigestvalue();
+                    break;
+                case 3:
+                    System.out.println("Digite o valor que deseja remover");
+                    int valor = teclado.nextInt();
+                    controller.RemoveValue(valor);
+                    break;
+                default:
+                    System.out.println("Valor Invalido Inserido");
+            }
         }catch (Exception e){
-            System.out.println("Valor Invalido");
+            System.out.println("Valor Invalido Inserido");
         }
     }
 

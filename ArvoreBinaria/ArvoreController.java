@@ -116,4 +116,38 @@ public class ArvoreController {
 
         return no;
     }
+
+    public void removelowestvalue(){
+        this.tree.setRaiz(removermenorvalor(this.tree.getRaiz()));
+    }
+
+    private Node removermenorvalor(Node no){
+        if (no == null){
+            return null;
+        }
+
+        if (no.getEsquerda() == null){
+            return no.getDireita();
+        }
+
+        no.setEsquerda(removermenorvalor(no.getEsquerda()));
+        return  no;
+    }
+
+    public void removebigestvalue(){
+        this.tree.setRaiz(removermaiorvalor(this.tree.getRaiz()));
+    }
+
+    private Node removermaiorvalor(Node no){
+        if (no == null){
+            return null;
+        }
+
+        if (no.getDireita() == null){
+            return no.getEsquerda();
+        }
+
+        no.setDireita(removermaiorvalor(no.getDireita()));
+        return no;
+    }
 }
